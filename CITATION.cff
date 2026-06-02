@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: Living Architecture Nodes Protocol
+message: If you use this protocol, please cite it using the metadata from this file.
+type: software
+authors:
+  - family-names: Rukhaylo
+    given-names: Valentyn
+repository-code: https://github.com/altrudev/living-architecture-nodes
+version: 0.1.0
+date-released: 2026-06-02
+abstract: A repository nervous-system protocol for AI-assisted software maintenance.
+license: MIT

@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://altru.dev/living-architecture-nodes/schema/diagnostic-export.schema.json",
+  "title": "Living Architecture Nodes Diagnostic Export",
+  "type": "object",
+  "required": [
+    "protocol",
+    "version",
+    "exported_at",
+    "project",
+    "nodes",
+    "nerve"
+  ],
+  "properties": {
+    "protocol": {
+      "const": "Living Architecture Nodes"
+    },
+    "version": {
+      "type": "string"
+    },
+    "exported_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "arch": {
+      "type": "object",
+      "properties": {
+        "intent_summary": {
+          "type": "string"
+        },
+        "reality_summary": {
+          "type": "string"
+        },
+        "gap_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "source",
+          "node_file",
+          "health_score",
+          "dirty_status"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "node_file": {
+            "type": "string"
+          },
+          "health_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "dirty_status": {
+            "enum": [
+              "clean",
+              "dirty",
+              "at-risk",
+              "unknown"
+            ]
+          },
+          "stability": {
+            "enum": [
+              "stable",
+              "unstable",
+              "under active change",
+              "unknown"
+            ]
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dependents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fragile_points": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "security_notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "diagnostic_summary": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "nerve": {
+      "type": "object",
+      "required": [
+        "dirty_nodes",
+        "at_risk_nodes",
+        "cascade_map",
+        "likely_culprit_nodes"
+      ],
+      "properties": {
+        "dirty_nodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "at_risk_nodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cascade_map": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "cross_node_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "temporal_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "likely_culprit_nodes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "human_summary": {
+      "type": "string"
+    },
+    "suggested_investigation_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
