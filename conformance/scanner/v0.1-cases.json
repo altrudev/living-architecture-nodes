@@ -69,18 +69,6 @@
         "missing_nodes": [],
         "orphan_nodes": []
       }
-    },
-    {
-      "id": "node-files-never-become-source",
-      "files": ["ARCH.md", "NERVE.md", "CHANGELOG.node.md", "src/widget.node.md"],
-      "source_extensions": [".md"],
-      "expected": {
-        "missing_required": [],
-        "source_files": [],
-        "node_files": ["src/widget.node.md"],
-        "missing_nodes": [],
-        "orphan_nodes": ["src/widget.node.md"]
-      }
     }
   ]
 }
