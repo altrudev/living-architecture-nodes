@@ -38,6 +38,8 @@ Supported v1 dirty-evidence modes:
 
 A host MAY provide stronger evidence in a future contract version, but it must not reinterpret v1 fields.
 
+Workspace filtering MAY be expressed as simple directory exclusions and/or host-compatible glob exclusions. Official adapters must preserve user-configured exclusions rather than silently narrowing them.
+
 ## Canonical findings
 
 The v1 result reports:
