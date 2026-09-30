@@ -230,3 +230,13 @@ Living Architecture Nodes is not:
 
 It is a protocol for keeping architecture memory synchronized with code and maintenance reality.
 
+
+## 13. Host adapter interoperability
+
+Host integrations MAY implement the Living Architecture Nodes Adapter Contract v1.
+
+The adapter contract standardizes host evidence, canonical basic-local findings, and mutation receipts while leaving host-specific UI and failure policy outside protocol truth semantics.
+
+Official schemas are published under `schema/adapter-*.schema.json`.
+
+A compatible adapter MUST preserve `NOT_VERIFIED` when semantic architecture verification was not executed and MUST NOT silently upload repository contents or substitute remote compute for a local operation.

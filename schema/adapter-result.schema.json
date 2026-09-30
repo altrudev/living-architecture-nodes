@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://altru.dev/living-architecture-nodes/schema/adapter-result.schema.json",
+  "title": "Living Architecture Nodes Adapter Result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "hostKind", "verificationScope", "evidenceMode",
+    "sourceFileCount", "nodeFileCount", "findings", "semanticArchitecture"
+  ],
+  "properties": {
+    "schema": { "const": "lan.adapter.result.v1" },
+    "hostKind": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "verificationScope": { "const": "basic-local" },
+    "evidenceMode": { "enum": ["mtime", "changed-paths", "none"] },
+    "sourceFileCount": { "type": "integer", "minimum": 0 },
+    "nodeFileCount": { "type": "integer", "minimum": 0 },
+    "findings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["missingRequired", "missingNodes", "dirtyNodes", "orphanNodes"],
+      "properties": {
+        "missingRequired": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "missingNodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceNode" }
+        },
+        "dirtyNodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceNode" }
+        },
+        "orphanNodes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "semanticArchitecture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "executed", "reason"],
+      "properties": {
+        "status": { "const": "NOT_VERIFIED" },
+        "executed": { "const": false },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "sourceNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourcePath", "nodePath"],
+      "properties": {
+        "sourcePath": { "type": "string", "minLength": 1 },
+        "nodePath": { "type": "string", "minLength": 1 },
+        "reason": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
