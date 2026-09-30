@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://altru.dev/living-architecture-nodes/schema/adapter-request.schema.json",
+  "title": "Living Architecture Nodes Adapter Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "operation", "host", "workspace", "evidence"],
+  "properties": {
+    "schema": { "const": "lan.adapter.request.v1" },
+    "operation": { "enum": ["scan"] },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "version": { "type": ["string", "null"], "maxLength": 64 }
+      }
+    },
+    "workspace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root"],
+      "properties": {
+        "root": { "type": "string", "minLength": 1 },
+        "sourceExtensions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^\\." }
+        },
+        "excludeDirs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "requiredArtifacts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dirtyMode"],
+      "properties": {
+        "dirtyMode": { "enum": ["mtime", "changed-paths", "none"] },
+        "changedPaths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "mtimeToleranceMs": { "type": "integer", "minimum": 0, "maximum": 60000 }
+      }
+    }
+  }
+}

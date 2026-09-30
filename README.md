@@ -60,6 +60,11 @@ templates/
   CHANGELOG.node.template.md
 schema/
   diagnostic-export.schema.json
+  adapter-request.schema.json
+  adapter-result.schema.json
+  adapter-receipt.schema.json
+adapters/
+  README.md
 examples/
   small-web-app/
 tools/
@@ -79,3 +84,7 @@ Created by Valentyn Rukhaylo / Altru.dev.
 
 Copyright 2026.
 
+
+## Adapter contract
+
+Official and compatible host surfaces can use the host-neutral Adapter Contract v1 in `adapters/README.md`. The public contract defines request/result/receipt semantics without publishing the proprietary Altru.dev product engine.
